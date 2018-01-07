@@ -10,6 +10,8 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <hibernate.version></hibernate.version>
+        <spring.version></spring.version>
     </properties>
     <dependencies>
         <!-- JUNIT -->

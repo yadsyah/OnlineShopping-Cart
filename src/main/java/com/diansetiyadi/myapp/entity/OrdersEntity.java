@@ -15,7 +15,7 @@ public class OrdersEntity implements Serializable {
     private String customerEmail;
     private String customerName;
     private String customerPhone;
-    private Timestamp orderDate;
+    private Date orderDate;
     private int orderNum;
     private Collection<OrderDetailsEntity> orderDetailsById;
 
@@ -81,7 +81,7 @@ public class OrdersEntity implements Serializable {
 
     @Basic
     @Column(name = "Order_Date", nullable = false)
-    public Timestamp getOrderDate() {
+    public Date getOrderDate() {
         return orderDate;
     }
 

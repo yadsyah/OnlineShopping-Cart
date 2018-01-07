@@ -11,7 +11,7 @@ import java.util.Date;
 @Table(name = "products", schema = "shoppingcart")
 public class ProductsEntity implements Serializable {
     private String code;
-    private Timestamp createDate;
+    private Date createDate;
     private byte[] image;
     private String name;
     private double price;
@@ -29,7 +29,7 @@ public class ProductsEntity implements Serializable {
 
     @Basic
     @Column(name = "Create_Date", nullable = false)
-    public Timestamp getCreateDate() {
+    public Date getCreateDate() {
         return createDate;
     }
 

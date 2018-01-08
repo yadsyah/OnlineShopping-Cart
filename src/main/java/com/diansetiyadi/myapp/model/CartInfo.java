@@ -81,8 +81,8 @@ public class CartInfo {
         }
     }
 
-    public boolean isEmpty(ProductInfo productInfo) {
-        return this.cartLines.remove(productInfo);
+    public boolean isEmpty( ) {
+        return this.cartLines.isEmpty();
     }
 
     public boolean isValidCustomer() {

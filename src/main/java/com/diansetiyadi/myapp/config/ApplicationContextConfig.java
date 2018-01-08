@@ -1,6 +1,12 @@
 package com.diansetiyadi.myapp.config;
 
 
+import com.diansetiyadi.myapp.dao.AccountDAO;
+import com.diansetiyadi.myapp.dao.OrderDAO;
+import com.diansetiyadi.myapp.dao.ProductDAO;
+import com.diansetiyadi.myapp.dao.impl.AccountDAOImpl;
+import com.diansetiyadi.myapp.dao.impl.OrderDAOImpl;
+import com.diansetiyadi.myapp.dao.impl.ProductDAOImpl;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -33,6 +39,7 @@ public class ApplicationContextConfig {
     @Bean
     public ResourceBundleMessageSource messageSource() {
         ResourceBundleMessageSource resourceBundleMessageSource = new ResourceBundleMessageSource();
+        //Load Propertyy in messages/validator.properties
         resourceBundleMessageSource.setBasenames(new String[]{"messages/validator"});
         return resourceBundleMessageSource;
     }
@@ -102,4 +109,25 @@ public class ApplicationContextConfig {
     }
 
     //BEAN UNTUK DAO
+    @Bean(name = "accountDAO")
+    public AccountDAO getApplicantDAO(){
+        return new AccountDAOImpl();
+    }
+
+    @Bean(name = "productDAO")
+    public ProductDAO gerProductDAO(){
+        return new ProductDAOImpl();
+    }
+
+    @Bean(name = "orderDAO")
+    public OrderDAO getOrdeDAO(){
+        return new OrderDAOImpl();
+    }
+
+    @Bean(name="accountDAO")
+    public AccountDAO getAccountDAO(){
+        return new AccountDAOImpl();
+    }
+
+
 }

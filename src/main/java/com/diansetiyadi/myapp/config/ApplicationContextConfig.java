@@ -27,7 +27,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan("com.diansetiyadi.myapp.*")
+@ComponentScan(basePackages = "com.diansetiyadi.myapp.*")
 @EnableTransactionManagement
 @PropertySource("classpath:ds-hibernate-cfg.properties")
 public class ApplicationContextConfig {
@@ -89,7 +89,7 @@ public class ApplicationContextConfig {
 
         //Package contain entity classes
 
-        factoryBean.setPackagesToScan(new String[]{"com.diansetiyadi.myapp.entity"});
+        factoryBean.setPackagesToScan(new String[]{ "com.diansetiyadi.myapp.*" });
         factoryBean.setDataSource(dataSource);
         factoryBean.setHibernateProperties(properties);
         factoryBean.afterPropertiesSet();
@@ -103,7 +103,7 @@ public class ApplicationContextConfig {
     @Autowired
     @Bean(name = "transactionManager")
     public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory){
-        HibernateTransactionManager transactionManager = new HibernateTransactionManager();
+        HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);
 
         return transactionManager;
     }

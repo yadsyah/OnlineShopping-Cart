@@ -1,8 +1,11 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="myapp">
+  <artifact type="war" name="myapp">
     <output-path>$PROJECT_DIR$/out/artifacts/myapp</output-path>
-    <root id="root">
-      <element id="module-output" name="myapp" />
+    <root id="archive" name="myapp.war">
+      <element id="artifact" artifact-name="myapp:war exploded" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/src/main/webapp/META-INF/MANIFEST.MF" />
+      </element>
     </root>
   </artifact>
 </component>

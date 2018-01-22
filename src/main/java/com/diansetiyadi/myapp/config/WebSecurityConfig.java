@@ -1,7 +1,10 @@
 package com.diansetiyadi.myapp.config;
 
 
+import com.diansetiyadi.myapp.authentication.MyDBAuthenticationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -10,14 +13,23 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+
+    @Autowired
+    MyDBAuthenticationService myDBAuthenticationService;
+
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(myDBAuthenticationService);
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-    http.csrf().disable();
+        http.csrf().disable();
 
-    //THE PAGES require login as Employee or Manager
-     //if no login , it will redirect to /login page
-        http.authorizeRequests().antMatchers("/orderList","/order","/accountInfo").access("hasAnyRole('ROLE_EMPLOYEE','ROLE_MANAGER')");
+        //THE PAGES require login as Employee or Manager
+        //if no login , it will redirect to /login page
+        http.authorizeRequests().antMatchers("/orderList", "/order", "/accountInfo").access("hasAnyRole('ROLE_EMPLOYEE','ROLE_MANAGER')");
 
 
         //For Manager Only

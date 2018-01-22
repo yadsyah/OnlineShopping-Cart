@@ -6,7 +6,10 @@
 
     <groupId>ShoppingCart</groupId>
     <artifactId>myapp</artifactId>
+    <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
+    <name>SprinigMvcAnnotationShoppingCart Maven Webapp</name>
+    <url>http://maven.apache.org</url>
 
     <properties>
         <java.version>1.8</java.version>

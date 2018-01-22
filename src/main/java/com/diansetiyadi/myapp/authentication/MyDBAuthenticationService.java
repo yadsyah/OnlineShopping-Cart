@@ -22,10 +22,10 @@ public class MyDBAuthenticationService implements UserDetailsService {
 
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         AccountsEntity account = accountDAO.findAccount(userName);
-        System.out.println("Account = "+account);
+        System.out.println("Account = " + account);
 
-        if(account==null){
-            throw new UsernameNotFoundException("User "+userName+" tidak ditemukan di dalam Database");
+        if (account == null) {
+            throw new UsernameNotFoundException("User " + userName + " tidak ditemukan di dalam Database");
         }
 
         String role = account.getUserRole();
@@ -34,7 +34,7 @@ public class MyDBAuthenticationService implements UserDetailsService {
 
 
         //ROLE_EMPLYEE,ROLE_MANAGER
-        GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_"+role);
+        GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + role);
 
         grantList.add(authority);
 
@@ -43,7 +43,7 @@ public class MyDBAuthenticationService implements UserDetailsService {
         boolean credentialsNonExpired = true;
         boolean accountNonLocked = true;
 
-        UserDetails userDetails = new User(account.getUserName(),account.getPassword(),enabled,accountNonExpired,credentialsNonExpired,accountNonLocked,grantList);
+        UserDetails userDetails = new User(account.getUserName(), account.getPassword(), enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, grantList);
 
         return userDetails;
     }
